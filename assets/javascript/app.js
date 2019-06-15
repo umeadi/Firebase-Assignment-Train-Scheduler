@@ -101,32 +101,33 @@ $(document).ready(function(){
       console.log(trainFrequency);
 
       //Use moment.js to convert the first train arrival time to ........
-      var trainTimeConvert = moment(trainTime, "HH:mm").subtract(1, "years");
-      console.log("trainTimeConvert", + trainTimeConvert);
+      // var trainTimeConvert = moment(trainTime, "HH:mm").subtract(1, "years");
+      // console.log("trainTimeConvert", + trainTimeConvert);
 
-      //Use moment.js to show current time.............
-      var currentTime = moment();
+      // //Use moment.js to show current time.............
+      // var currentTime = moment();
 
-      //Use moment.js to show the difference in time between the first train arrival and the current time...............
-      var diffTime  = moment().diff(trainTimeConvert, "minutes");
-      console.log(diffTime);
+      // //Use moment.js to show the difference in time between the first train arrival and the current time...............
+      // var diffTime  = moment().diff(trainTimeConvert, "minutes");
+      // console.log(diffTime);
 
-      var remainder = diffTime % trainFrequency;
-      console.log("Remainder: " + remainder);
+      // var remainder = diffTime % trainFrequency;
+      // console.log("Remainder: " + remainder);
 
-      //Use moment.js to calculate the time remaining for the train to arrive.........
-      var timeRemain = trainFrequency - remainder;
-      console.log("Time Remain: " + timeRemain);
+      // //Use moment.js to calculate the time remaining for the train to arrive.........
+      // var timeRemain = trainFrequency - remainder;
+      // console.log("Time Remain: " + timeRemain);
 
-      //Use moment.js to calculate the next train arrival time...............
-      var newTrainTime = moment().add(timeRemain, "minutes");
-      var newTrainTimeFormat = moment(newTrainTime).format("HH:mm");
+      // //Use moment.js to calculate the next train arrival time...............
+      // var newTrainTime = moment().add(timeRemain, "minutes");
+      // var newTrainTimeFormat = moment(newTrainTime).format("HH:mm");
 
       //Declaring a variable that will hold the dynamically created rows and table data elements with its values.......
-      var row = $(("<tr class = 'tableRow'><td>" + trainNumber + "</td><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" + trainTime + "</td><td>" + trainFrequency  + "</td><td>" + newTrainTimeFormat  + "</td><td>" + timeRemain + "</td></tr>"));
+      var row = $(("<tr class = 'tableRow'><td>" + trainNumber + "</td><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" + trainTime + "</td><td>" + trainFrequency  + "</td><td>"/* + newTrainTimeFormat  + "</td><td>" + timeRemain + "</td></tr>"*/));
 
       //Appending the row to the table body...........................
       $(".tableBody").append(row);
-  });        
+  });  
+
 });
 
