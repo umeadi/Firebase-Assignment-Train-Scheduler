@@ -31,7 +31,7 @@ $(document).ready(function(){
   $("#add-train").on("click", function(event){
       event.preventDefault();
       if ($("#train-input").val(),$("#destination-input").val(),$("#time-input").val(), $("#frequency-input").val() === "") {
-          alert("All input fields are mandotary. Enter data in all fields and click the submit button.");
+          alert("Please input data in all fields.");
 
       // } else if ($("#time-input").val() > 24) {
       //     //An alert is displayed when the user enters a time more than 24.........................
@@ -52,7 +52,7 @@ $(document).ready(function(){
           console.log(trainTime);
           console.log(trainFrequency);
 
-          //Creating a local temporary object for holding train details..................
+          //Creating a temporary object for holding train details
           var trainDetail = {
               name : trainName,
               destination : trainDestination,
@@ -60,20 +60,20 @@ $(document).ready(function(){
               time : trainTime
           };
 
-          //Upload the train data to the database.........................
+          //Push the train data to the database
           database.ref().push(trainDetail);
       
-          //Console log.....................
+          //Console log testing script
           console.log("Temporary object train values");
           console.log(trainDetail.name);
           console.log(trainDetail.destination);
           console.log(trainDetail.frequency);
           console.log(trainDetail.time);      
       
-          //Alerts............................
+          //Alert
           alert("A new train details has been added..");        
 
-          //Clearing all the values from the input area when the submit button is clicked.
+          //Clear all the values from the input area when the submit button is clicked
           $("#train-input").val("");
           $("#destination-input").val("");
           $("#time-input").val("");
@@ -81,51 +81,51 @@ $(document).ready(function(){
       }
   });
       
-  //Creating a firebase event for adding train to the database and a row to the html.................
+  //Create a firebase event for adding train to the database and a row to the html
   database.ref().on("child_added", function(childSnapshot, prevChildKey){
       console.log("Hello2");
       console.log(childSnapshot.val());
       
-      //Store to a variable.......
+      //Store to a variable
       var trainNumber = clickCounter++;
       var trainName = childSnapshot.val().name;
       var trainDestination = childSnapshot.val().destination;
       var trainTime = childSnapshot.val().time;
       var trainFrequency = childSnapshot.val().frequency;
 
-      //console log.................
+      //console log script
       console.log("database train value");
       console.log(trainName);
       console.log(trainDestination);
       console.log(trainTime);
       console.log(trainFrequency);
 
-      //Use moment.js to convert the first train arrival time to ........
+      //Use moment.js to convert the first train arrival time to
       // var trainTimeConvert = moment(trainTime, "HH:mm").subtract(1, "years");
       // console.log("trainTimeConvert", + trainTimeConvert);
 
-      // //Use moment.js to show current time.............
+      // //Use moment.js to show current time
       // var currentTime = moment();
 
-      // //Use moment.js to show the difference in time between the first train arrival and the current time...............
+      // //Use moment.js to show the difference in time between the first train arrival and the current time
       // var diffTime  = moment().diff(trainTimeConvert, "minutes");
       // console.log(diffTime);
 
       // var remainder = diffTime % trainFrequency;
       // console.log("Remainder: " + remainder);
 
-      // //Use moment.js to calculate the time remaining for the train to arrive.........
+      // //Use moment.js to calculate the time remaining for the train to arrive
       // var timeRemain = trainFrequency - remainder;
       // console.log("Time Remain: " + timeRemain);
 
-      // //Use moment.js to calculate the next train arrival time...............
+      // //Use moment.js to calculate the next train arrival time
       // var newTrainTime = moment().add(timeRemain, "minutes");
       // var newTrainTimeFormat = moment(newTrainTime).format("HH:mm");
 
       //Declaring a variable that will hold the dynamically created rows and table data elements with its values.......
       var row = $(("<tr class = 'tableRow'><td>" + trainNumber + "</td><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" + trainTime + "</td><td>" + trainFrequency  + "</td><td>"/* + newTrainTimeFormat  + "</td><td>" + timeRemain + "</td></tr>"*/));
 
-      //Appending the row to the table body...........................
+      //Appending the row to the table body
       $(".tableBody").append(row);
   });  
 
